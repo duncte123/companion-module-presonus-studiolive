@@ -1,6 +1,6 @@
 const mid = require('node-machine-id').machineIdSync({ original: true }).replace(/-/g, '')
 
-import { MessageCode, Client as StudioLiveAPI } from 'presonus-studiolive-api'
+import { MessageCode, Client as StudioLiveAPI } from '@duncte123/presonus-studiolive-api'
 import generateMixes from './mixes'
 
 import { ValueSeparator } from './util/Constants'

@@ -1,6 +1,6 @@
 
 import type { CompanionActionDefinition, CompanionActionDefinitions, DropdownChoice } from "@companion-module/base"
-import { ChannelSelector } from "presonus-studiolive-api"
+import { ChannelSelector } from "@duncte123/presonus-studiolive-api"
 import type Instance from ".."
 import { generateTransitionPeriodOption } from "../util/actionsUtils"
 import { extractChannelSelector, generateChannelSelectOption, generateMixSelectOption } from "../util/channelUtils"

@@ -1,6 +1,6 @@
 
 import { DropdownChoice } from '@companion-module/base';
-import type { ChannelCount } from 'presonus-studiolive-api';
+import type { ChannelCount } from '@duncte123/presonus-studiolive-api';
 import { ValueSeparator } from './util/Constants';
 
 export default function generateMixes(channels: ChannelCount): DropdownChoice[] {

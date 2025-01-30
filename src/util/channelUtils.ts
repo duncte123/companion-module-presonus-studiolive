@@ -1,7 +1,7 @@
 import type { CompanionActionDefinition, CompanionActionDefinitions, CompanionInputFieldDropdown, CompanionInputFieldNumber, CompanionOptionValues, DropdownChoice } from "@companion-module/base"
-import { ChannelSelector } from "presonus-studiolive-api"
+import { ChannelSelector } from "@duncte123/presonus-studiolive-api"
 import { ValueSeparator } from './Constants';
-import type { ChannelTypes, ChannelCount } from 'presonus-studiolive-api';
+import type { ChannelTypes, ChannelCount } from '@duncte123/presonus-studiolive-api';
 
 export function generateChannelSelectOption(channels: DropdownChoice[], label: string = "Channel"): CompanionInputFieldDropdown {
     return {
@@ -43,7 +43,7 @@ export function extractChannelSelector(options: CompanionOptionValues) {
 }
 
 /**
- * Prettify the channel type labels  
+ * Prettify the channel type labels
  * - Remove "CH" (from MAIN CH, TALKBACK CH)
  * - 'Title Case' the names
  * - Stylise "FX Return", and "FX"

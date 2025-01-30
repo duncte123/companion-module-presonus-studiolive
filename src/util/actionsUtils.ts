@@ -1,5 +1,5 @@
 import type { CompanionActionDefinition, CompanionActionDefinitions, CompanionInputFieldDropdown, CompanionInputFieldNumber, DropdownChoice } from "@companion-module/base"
-import { ChannelSelector } from "presonus-studiolive-api"
+import { ChannelSelector } from "@duncte123/presonus-studiolive-api"
 import { ValueSeparator } from "./Constants"
 import { extractChannelSelector } from "./channelUtils"
 
