@@ -47,10 +47,10 @@
   resolved "https://packages.atlassian.com/api/npm/npm-remote/@discoveryjs/json-ext/-/json-ext-0.5.7.tgz"
   integrity sha512-dBVuXR082gk3jsFp7Rd/JI4kytwGHecnCoTtXFb7DB6CNHp4rg5k1bhg0nWdLGLnOV71lmDzGQaLMy8iPLY0pw==
 
-"@duncte123/presonus-studiolive-api@^1.4.2":
-  version "1.4.2"
-  resolved "https://registry.npmjs.org/@duncte123/presonus-studiolive-api/-/presonus-studiolive-api-1.4.2.tgz"
-  integrity sha512-4KDKRrxSj7HMjVMGzhqGF++5+0AhfTZiv5vycPifPVVpq3eyBHLEnY75TWRSIKAAnX6jgvMIUtEFTr2ilKxT5g==
+"@duncte123/presonus-studiolive-api@^1.4.3":
+  version "1.4.3"
+  resolved "https://registry.npmjs.org/@duncte123/presonus-studiolive-api/-/presonus-studiolive-api-1.4.3.tgz"
+  integrity sha512-ZgUxAiyA9AsUDrb6k0fpsrEJ42K2VeRTYNargbhOA9P7UaCy28STOeCcp9Sb3h8bZSVRaBa3dCheGKvhJrrboQ==
   dependencies:
     "@types/node" "^14.14.6"
     bunyan "^1.8.15"
