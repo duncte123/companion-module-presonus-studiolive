@@ -77,6 +77,10 @@ class Instance extends InstanceBase<ConfigType> {
       this.checkFeedbacks('ChannelMute')
     })
 
+    this.client.on(MessageCode.FaderPosition, () => {
+      this.checkFeedbacks('ChannelFader')
+    })
+
     this.client.on(MessageCode.ParamChars, () => {
       this.checkFeedbacks('ChannelColour')
     })
@@ -110,6 +114,7 @@ class Instance extends InstanceBase<ConfigType> {
 
     this.checkFeedbacks('ChannelMute')
     this.checkFeedbacks('ChannelColour')
+    this.checkFeedbacks('ChannelFader')
 
 
     if (this.consoleStateVariables.length > 0) {

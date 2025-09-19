@@ -4,15 +4,7 @@ import generateFeedback from './feedbacks'
 import type Instance from './index'
 
 export default function generatePreset(this: Instance, channels: DropdownChoice[], mixes: DropdownChoice[]) {
-    let presets: CompanionPresetDefinitions & {
-        [id: string]: {
-            feedbacks: { feedbackId: keyof ReturnType<typeof generateFeedback> }[],
-            steps: {
-                down: { actionId: keyof ReturnType<typeof generateActions_channels> }[]
-                up: { actionId: keyof ReturnType<typeof generateActions_channels> }[]
-            }[]
-        }
-    } = {}
+    let presets: CompanionPresetDefinitions = {}
 
     channels.slice(1).forEach(channel => {
         presets['toggle_mute-' + channel.id] = {
@@ -23,7 +15,7 @@ export default function generatePreset(this: Instance, channels: DropdownChoice[
                 {
                     feedbackId: 'ChannelMute',
                     options: {
-                        channel: channel.id,
+                        channel: channel.id.toString(),
                         mix: ''
                     },
                     style: {

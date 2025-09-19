@@ -1,5 +1,4 @@
 import { CompanionFeedbackDefinition, CompanionFeedbackDefinitions, DropdownChoice, combineRgb } from '@companion-module/base';
-
 import type { ChannelSelector } from '@duncte123/presonus-studiolive-api';
 import type Instance from './index';
 import { extractChannelSelector, generateChannelSelectOption, generateMixSelectOption } from './util/channelUtils';
@@ -40,7 +39,22 @@ export default function generateFeedback(this: Instance, channels: DropdownChoic
 
             })
         },
+        ChannelFader: {
+          type: 'advanced',
+          name: 'Fader Volume progress bar',
+          description: 'Assigned channel colour',
+          options: [
+            channelSelectOptions,
+            mixSelectOptions,
+          ],
+          callback: withChannelSelector((feedback, context, channel) => {
+            const faderValue = parseInt(this.client.getLevel(channel), 10);
 
+            return {
+              text: `${channel.channel}: ${faderValue}`,
+            };
+          }),
+        },
         ChannelColour: {
             type: 'advanced',
             name: 'Channel colour',
@@ -48,7 +62,6 @@ export default function generateFeedback(this: Instance, channels: DropdownChoic
             options: [
                 channelSelectOptions
             ],
-
             callback: withChannelSelector((feedback, context, channel) => {
                 let colour: string = this.client.getColour(channel)
                 if (!colour) return {};
@@ -61,5 +74,5 @@ export default function generateFeedback(this: Instance, channels: DropdownChoic
                 }
             })
         }
-    } satisfies CompanionFeedbackDefinitions
+    } satisfies CompanionFeedbackDefinitions;
 }
