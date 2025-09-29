@@ -13,3 +13,14 @@ export function generateTransitionPeriodOption(transitionDefaultMs: number): Com
 		max: 60 * 1000
 	}
 }
+
+export function generatedBStep(defaultStep: number): CompanionInputFieldNumber {
+	return {
+		label: 'Step',
+		type: 'number',
+		id: 'step',
+		default: defaultStep,
+		min: 1,
+		max: 100
+	}
+}

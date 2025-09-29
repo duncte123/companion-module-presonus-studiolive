@@ -1,7 +1,7 @@
 import type { CompanionActionDefinition, CompanionActionDefinitions, DropdownChoice } from '@companion-module/base'
 import { ChannelSelector } from '@duncte123/presonus-studiolive-api'
 import type Instance from '..'
-import { generateTransitionPeriodOption } from '../util/actionsUtils'
+import { generatedBStep, generateTransitionPeriodOption } from '../util/actionsUtils'
 import { extractChannelSelector, generateChannelSelectOption, generateMixSelectOption } from '../util/channelUtils'
 
 const withChannelSelector = function (fn: (
@@ -101,7 +101,7 @@ export default function generateActions_channels(this: Instance, channels: Dropd
       options: [
         channelSelectOptions,
         mixSelectOptions,
-        generateTransitionPeriodOption(200)
+        generatedBStep(5)
       ],
       callback: withChannelSelector(async (action, context, channel) => {
         const currentLevel = parseInt(this.client.getLevel(channel), 10);
@@ -110,7 +110,7 @@ export default function generateActions_channels(this: Instance, channels: Dropd
           return;
         }
 
-        await this.client.setChannelVolumeLinear(channel, currentLevel + 1, 0);
+        await this.client.setChannelVolumeLinear(channel, currentLevel + <number>action.options.step, 0);
       }),
     },
     decreaseChannelVolume: {
@@ -119,7 +119,7 @@ export default function generateActions_channels(this: Instance, channels: Dropd
       options: [
         channelSelectOptions,
         mixSelectOptions,
-        generateTransitionPeriodOption(200)
+        generatedBStep(5)
       ],
       callback: withChannelSelector(async (action, context, channel) => {
         const currentLevel = parseInt(this.client.getLevel(channel), 10);
@@ -128,7 +128,7 @@ export default function generateActions_channels(this: Instance, channels: Dropd
           return;
         }
 
-        await this.client.setChannelVolumeLinear(channel, currentLevel - 1, 0);
+        await this.client.setChannelVolumeLinear(channel, currentLevel - <number>action.options.step, 0);
       }),
     },
   } satisfies CompanionActionDefinitions
