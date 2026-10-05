@@ -2,6 +2,10 @@ import { CompanionFeedbackDefinition, CompanionFeedbackDefinitions, DropdownChoi
 import type { ChannelSelector } from '@duncte123/presonus-studiolive-api';
 import type Instance from './index';
 import { extractChannelSelector, generateChannelSelectOption, generateMixSelectOption } from './util/channelUtils';
+import { parseChannelString } from '@duncte123/presonus-studiolive-api/dist/lib/util/channelUtil'
+import path from 'node:path';
+import fs from 'node:fs';
+import { createCanvas } from 'canvas';
 
 const withChannelSelector = function <T>(fn: (
     action: Parameters<CompanionFeedbackDefinition['callback']>[0],
@@ -49,9 +53,29 @@ export default function generateFeedback(this: Instance, channels: DropdownChoic
           ],
           callback: withChannelSelector((feedback, context, channel) => {
             const faderValue = parseInt(this.client.getLevel(channel), 10);
+            const canvas = createCanvas(100, 100);
+            const ctx = canvas.getContext('2d');
+
+            ctx.strokeStyle = 'white';
+            ctx.strokeRect(5, 75, 90, 20);
+            // ctx.strokeRect(0, 75, 100, 20);
+
+            ctx.fillStyle = 'white';
+            ctx.fillRect(5, 75, Math.max(0, faderValue - 10), 20);
+
+            ctx.fillStyle = 'red';
+            ctx.fillRect(70, 75, 2, 20);
+
+            const channelNameSelector = parseChannelString(channel) + '/username';
+            const channelName = this.client.state.get(channelNameSelector);
 
             return {
-              text: `${channel.channel}: ${faderValue}`,
+              // text: `${channel.channel}: ${faderValue}`,
+              text: channelName,
+              // text: `${imagePath}`,
+              // text: `${faderValue}.png`,
+              // png64: data.toString('base64'),
+              png64: canvas.toBuffer().toString('base64'),
             };
           }),
         },

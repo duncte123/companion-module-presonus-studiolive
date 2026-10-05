@@ -77,6 +77,11 @@ class Instance extends InstanceBase<ConfigType> {
       this.checkFeedbacks('ChannelMute')
     })
 
+    // Little cheat as this also includes channel names.
+    // this.client.on(MessageCode.ParamString, () => {
+    //   this.checkFeedbacks('ChannelFader')
+    // })
+
     this.client.on(MessageCode.FaderPosition, () => {
       this.checkFeedbacks('ChannelFader')
     })
